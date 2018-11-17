@@ -1,0 +1,7 @@
+﻿@model IEnumerable<BankUpdateRequestModel>
+@using SmartStore.Admin.Models.Common;
+@{
+    Html.AddTitleParts(T("PageTitle.Dashboard").Text);
+    Layout = "_MyAccount";
+    ViewBag.PageTitle = T("Account.Dashboard").Text;
+}

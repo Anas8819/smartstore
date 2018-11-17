@@ -1,0 +1,103 @@
+﻿@model SmartStore.Admin.Models.Plugins.PayTabsModel
+
+@{
+    ViewBag.Title = "PayTabs";
+}
+
+<h2>PayTabs</h2>
+
+
+@{if (TempData["Status"] != null)
+    {
+        string status = (string)TempData["Status"];
+        switch (status)
+        {
+            case "Error":
+                {
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error: </strong>@TempData["Msg"].ToString()
+                    </div>
+                    break;
+                }
+            case "Success":
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success: </strong>@TempData["Msg"].ToString()
+                    </div>
+                    break;
+                }
+        }
+    }
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            <div class="col-md-2">
+                @Html.Label("Pay tabs Marchant Email")
+            </div>
+            @*@Html.LabelFor(model => model.Paytab_ssmerchant_email, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.MerchantEmail , new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MerchantEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2">
+                @Html.Label("Pay tabs Secret Key")
+            </div>
+            @*@Html.LabelFor(model => model.Paytab_secret_key, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.SecretKey, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SecretKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2">
+                @Html.Label("Pay tabs Currency")
+            </div>
+            @*@Html.LabelFor(model => model.Paytab_currency, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Currency, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2">
+                @Html.Label("Pay tabs Site Url")
+            </div>
+            @*@Html.LabelFor(model => model.Paytab_site_url, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.SiteUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SiteUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                @Html.Label("Pay tabs Refund Period")
+            </div>
+            @*@Html.LabelFor(model => model.Paytab_Refund_Period, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.RefundPeriod, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RefundPeriod, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
